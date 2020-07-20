@@ -2,6 +2,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
+
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
@@ -12,4 +13,10 @@
     <servlet-name>HelloServlet</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
+
+  <context-param>
+    <param-name>log4jConfiguration</param-name>
+    <param-value>/WEB-INF/log4j2.xml</param-value>
+  </context-param>
+
 </web-app>

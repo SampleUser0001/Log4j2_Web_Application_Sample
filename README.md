@@ -119,8 +119,32 @@ Hello Web App!Connection closed by foreign host.
 ./opt/IBM/WebSphere/AppServer/profiles/AppSrv01/logs/testlog.log
 ```
 
+## log4j2.xmlパス変更
+
+設定ファイルの類はsrc/main/resourcesに配置すれば動くが、下記の方法でも動く。
+
+### 配置パス
+
+```
+./src/main/webapp/WEB-INF/log4j2.xml
+```
+
+### web.xml
+
+下記を追記。
+```
+  <context-param>
+    <param-name>log4jConfiguration</param-name>
+    <param-value>/WEB-INF/log4j2.xml</param-value>
+  </context-param>
+```
+※techscoreの記事によるとweb-appタブ直下に記載するものらしいが、どこに記載しても動く。
+
 ## 参考
 
 [はてなブログ : CLOVER : Apache MavenでWebアプリにトライ](https://kazuhira-r.hatenablog.com/entry/20110520/1305895216)
-
 元ネタは[これ](http://maven.apache.org/guides/mini/guide-webapp.html)らしいがNotFoundになっている。
+
+[techscore : 3. サーブレットの基本2](https://www.techscore.com/tech/Java/JavaEE/Servlet/3/)
+[Qiita : log4j2 を Webアプリケーションで使う場合の配置と設定](https://qiita.com/pica/items/afcebf0a06a745cb8c8c)
+
