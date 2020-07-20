@@ -122,7 +122,27 @@ Hello Web App!Connection closed by foreign host.
 ## log4j2.xmlパス変更
 
 ~~設定ファイルの類はsrc/main/resourcesに配置すれば動くが、下記の方法でも動く。~~  
-間違い。動かない。前回コンパイル時に残っていた残骸のおかげて動いていた。
+~~間違い。動かない。前回コンパイル時に残っていた残骸のおかげて動いていた。~~  
+動かなかった原因判明。ライブラリが足りない。下記3つが必要。  
+web.xmlにパスを記載するにはlog4j-webが必要。
+```
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.12.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.12.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+      <version>2.12.1</version>
+    </dependency>
+
+```
 
 ### log4j2.xmlパス
 
@@ -138,16 +158,7 @@ Hello Web App!Connection closed by foreign host.
     <param-value>/WEB-INF/log4j2.xml</param-value>
   </context-param>
 ```
-~~※techscoreの記事によるとweb-appタブ直下に記載するものらしいが、どこに記載しても動く。~~  
-※この方法では動かない。
-
-下記も動かない。
-```
-  <context-param>
-    <param-name>log4jConfiguration</param-name>
-    <param-value>classpath:/WEB-INF/log4j2.xml</param-value>
-  </context-param>
-```
+※techscoreの記事によるとweb-appタブ直下に記載するものらしいが、どこに記載しても動く。~
 
 ## 参考
 
