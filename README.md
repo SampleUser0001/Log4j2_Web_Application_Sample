@@ -112,6 +112,13 @@ GET /hello
 Hello Web App!Connection closed by foreign host.
 ```
 
+## ログ出力
+
+出力パス
+```
+./opt/IBM/WebSphere/AppServer/profiles/AppSrv01/logs/testlog.log
+```
+
 ## 参考
 
 [はてなブログ : CLOVER : Apache MavenでWebアプリにトライ](https://kazuhira-r.hatenablog.com/entry/20110520/1305895216)
