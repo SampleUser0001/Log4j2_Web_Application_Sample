@@ -121,13 +121,13 @@ Hello Web App!Connection closed by foreign host.
 
 ## log4j2.xmlパス変更
 
-設定ファイルの類はsrc/main/resourcesに配置すれば動くが、下記の方法でも動く。
+~~設定ファイルの類はsrc/main/resourcesに配置すれば動くが、下記の方法でも動く。~~  
+間違い。動かない。前回コンパイル時に残っていた残骸のおかげて動いていた。
 
-### 配置パス
+### log4j2.xmlパス
 
-```
-./src/main/webapp/WEB-INF/log4j2.xml
-```
+- 変更前：./src/main/resources/log4j2.xml
+- 変更後：./src/main/webapp/WEB-INF/log4j2.xml
 
 ### web.xml
 
@@ -138,13 +138,22 @@ Hello Web App!Connection closed by foreign host.
     <param-value>/WEB-INF/log4j2.xml</param-value>
   </context-param>
 ```
-※techscoreの記事によるとweb-appタブ直下に記載するものらしいが、どこに記載しても動く。
+~~※techscoreの記事によるとweb-appタブ直下に記載するものらしいが、どこに記載しても動く。~~  
+※この方法では動かない。
+
+下記も動かない。
+```
+  <context-param>
+    <param-name>log4jConfiguration</param-name>
+    <param-value>classpath:/WEB-INF/log4j2.xml</param-value>
+  </context-param>
+```
 
 ## 参考
 
-[はてなブログ : CLOVER : Apache MavenでWebアプリにトライ](https://kazuhira-r.hatenablog.com/entry/20110520/1305895216)
+[はてなブログ : CLOVER : Apache MavenでWebアプリにトライ](https://kazuhira-r.hatenablog.com/entry/20110520/1305895216)  
 元ネタは[これ](http://maven.apache.org/guides/mini/guide-webapp.html)らしいがNotFoundになっている。
 
-[techscore : 3. サーブレットの基本2](https://www.techscore.com/tech/Java/JavaEE/Servlet/3/)
+[techscore : 3. サーブレットの基本2](https://www.techscore.com/tech/Java/JavaEE/Servlet/3/)  
 [Qiita : log4j2 を Webアプリケーションで使う場合の配置と設定](https://qiita.com/pica/items/afcebf0a06a745cb8c8c)
 
