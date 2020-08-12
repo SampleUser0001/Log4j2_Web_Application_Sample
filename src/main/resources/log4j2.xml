@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE project>  
-<Configuration status="off">
+<?xml version="1.0" encoding="Shift_JIS"?>
+<Configuration>
 
 	<!-- Propertiesは、nameの値を変数として使える -->
     <Properties>
-        <Property name="format1">%d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-6p %c{10} %m%n</Property>
+        <property name="format1" value="%d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-6p %c{10} %m%n" />
        <!-- ログのフォーマット 
    		%dは日時。{}に日時の形式を指定
    		%tはスレッド名
@@ -16,22 +15,27 @@
       -->
         <Property name="logfile">./logs/testlog.log</Property>
         <Property name="logfile-archive">./logs/testlog_%d{yyyy-MM-dd}-%i.log</Property>
+        <property name="test.log" value="./logs" />
     </Properties>
     
 	<Appenders>
 		<!-- コンソールに出力する設定 -->
 		<Console name="Console" target="SYSTEM_OUT">
-			<PatternLayout>
-				<pattern>${format1}</pattern>
-			</PatternLayout>
+			<PatternLayout pattern="${format1}"/>
 		</Console>
 
-		<!-- ファイルに出力する設定 -->
+		<File name="Root" fileName="${test.log}/default.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS},%m%n"/>
+		</File>
+
+		<File name="O" fileName="${test.log}/other.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS},%m%n"/>
+		</File>
+
+		<!-- ファイルに出力する設定 
 		<RollingFile name="logfile001" append="true" fileName="${logfile}"
 			filePattern="${logfile-archive}">
-			<PatternLayout>
-				<pattern>${format1}</pattern>
-			</PatternLayout>
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS},%m%n"/>
 			<Policies>
 				// 1kBに達したらローテーションのファイルを作成する
 				<SizeBasedTriggeringPolicy size="1KB"/>
@@ -39,13 +43,24 @@
 			// ローテーションのファイルは、3つ持つ
 			<DefaultRolloverStrategy max="3"/>
 		</RollingFile>
+		-->
 	</Appenders>
 	
 	<Loggers>
+		<Root level="debug">
+			<AppenderRef ref="Root"/>
+		</Root>
+
+		<Logger name="myapp.other" level="debug" additivity="false">
+			<AppenderRef ref="O"/>
+		</Logger>
+
+		<!--
 		// trace以上のログを出力する
 		<Root level="trace">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="logfile001" />
 		</Root>
+		-->
 	</Loggers>
 </Configuration>

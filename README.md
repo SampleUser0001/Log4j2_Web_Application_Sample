@@ -160,6 +160,10 @@ web.xmlにパスを記載するにはlog4j-webが必要。
 ```
 ※techscoreの記事によるとweb-appタブ直下に記載するものらしいが、どこに記載しても動く。~
 
+## URL
+<IP>:<Port>/Log4j2_Web_Application_Sample_war/hello
+https://18.179.45.105:9443/Log4j2_Web_Application_Sample_war/hello
+
 ## 参考
 
 [はてなブログ : CLOVER : Apache MavenでWebアプリにトライ](https://kazuhira-r.hatenablog.com/entry/20110520/1305895216)  
